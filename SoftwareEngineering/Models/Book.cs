@@ -24,6 +24,9 @@ namespace SoftwareEngineering.Models
         public string BookLink { get; set; }
 
         public virtual BookProvider BookProvider { get; set; }
+        public virtual BookGenre GenreId1Navigation { get; set; }
+        public virtual BookGenre GenreId2Navigation { get; set; }
+        public virtual BookGenre GenreId3Navigation { get; set; }
         public virtual ICollection<BookSession> BookSessions { get; set; }
     }
 }

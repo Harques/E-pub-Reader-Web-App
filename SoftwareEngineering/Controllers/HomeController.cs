@@ -29,11 +29,11 @@ namespace SoftwareEngineering.Controllers
         }
         public IActionResult Index()
         {
-            using (var ctx = new EBookApplicationContext())
-            {
-                var result = ctx.Users.Where(x => x.Email == "erdem").FirstOrDefault<User>().Email;
-                ViewBag.gokce = result;
-            };
+            //using (var ctx = new EBookApplicationContext())
+            //{
+            //    var result = ctx.Users.Where(x => x.Email == "erdem").FirstOrDefault<User>().Email;
+            //    ViewBag.gokce = result;
+            //};
             
             return View();
         }
@@ -43,10 +43,5 @@ namespace SoftwareEngineering.Controllers
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
     }
 }

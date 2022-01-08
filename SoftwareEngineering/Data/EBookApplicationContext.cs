@@ -20,6 +20,7 @@ namespace SoftwareEngineering.Data
 
         public virtual DbSet<Admin> Admins { get; set; }
         public virtual DbSet<Book> Books { get; set; }
+        public virtual DbSet<BookGenre> BookGenres { get; set; }
         public virtual DbSet<BookProvider> BookProviders { get; set; }
         public virtual DbSet<BookSession> BookSessions { get; set; }
         public virtual DbSet<User> Users { get; set; }
@@ -49,7 +50,9 @@ namespace SoftwareEngineering.Data
                     .IsRequired()
                     .HasMaxLength(50);
 
-                entity.Property(e => e.Hash).IsRequired();
+                entity.Property(e => e.Hash)
+                    .IsRequired()
+                    .HasMaxLength(128);
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -58,8 +61,6 @@ namespace SoftwareEngineering.Data
                 entity.Property(e => e.Phone)
                     .HasMaxLength(13)
                     .IsFixedLength(true);
-
-                entity.Property(e => e.Salt).IsRequired();
             });
 
             modelBuilder.Entity<Book>(entity =>
@@ -89,6 +90,34 @@ namespace SoftwareEngineering.Data
                     .WithMany(p => p.Books)
                     .HasForeignKey(d => d.BookProviderId)
                     .HasConstraintName("FK_Book_BookProvider");
+
+                entity.HasOne(d => d.GenreId1Navigation)
+                    .WithMany(p => p.BookGenreId1Navigations)
+                    .HasForeignKey(d => d.GenreId1)
+                    .HasConstraintName("FK_Book_BookGenre1");
+
+                entity.HasOne(d => d.GenreId2Navigation)
+                    .WithMany(p => p.BookGenreId2Navigations)
+                    .HasForeignKey(d => d.GenreId2)
+                    .HasConstraintName("FK_Book_BookGenre2");
+
+                entity.HasOne(d => d.GenreId3Navigation)
+                    .WithMany(p => p.BookGenreId3Navigations)
+                    .HasForeignKey(d => d.GenreId3)
+                    .HasConstraintName("FK_Book_BookGenre3");
+            });
+
+            modelBuilder.Entity<BookGenre>(entity =>
+            {
+                entity.ToTable("BookGenre");
+
+                entity.HasIndex(e => e.Name, "IX_BookGenre")
+                    .IsUnique();
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<BookProvider>(entity =>
@@ -105,7 +134,9 @@ namespace SoftwareEngineering.Data
                     .IsRequired()
                     .HasMaxLength(50);
 
-                entity.Property(e => e.Hash).IsRequired();
+                entity.Property(e => e.Hash)
+                    .IsRequired()
+                    .HasMaxLength(128);
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -114,8 +145,6 @@ namespace SoftwareEngineering.Data
                 entity.Property(e => e.Phone)
                     .HasMaxLength(13)
                     .IsFixedLength(true);
-
-                entity.Property(e => e.Salt).IsRequired();
             });
 
             modelBuilder.Entity<BookSession>(entity =>
@@ -153,13 +182,13 @@ namespace SoftwareEngineering.Data
                     .IsRequired()
                     .HasMaxLength(50);
 
-                entity.Property(e => e.Hash).IsRequired();
+                entity.Property(e => e.Hash)
+                    .IsRequired()
+                    .HasMaxLength(128);
 
                 entity.Property(e => e.Phone)
                     .HasMaxLength(13)
                     .IsFixedLength(true);
-
-                entity.Property(e => e.Salt).IsRequired();
             });
 
             OnModelCreatingPartial(modelBuilder);

@@ -8,7 +8,7 @@ namespace SoftwareEngineering.Service
     {
         public User Login(RegisterUserDTO registerUserDto)
         {
-            return null; 
+            return null;
             ////var user = null;
 
             //bool isValidPassword = BCrypt.Net.BCrypt.Verify(oUser.Password, User.Password);
@@ -22,9 +22,10 @@ namespace SoftwareEngineering.Service
 
         public User Register(RegisterUserDTO registerUserDto)
         {
-
             User user = new User();
+            user.Email = registerUserDto.Email;
             user.Hash = BCrypt.Net.BCrypt.HashPassword(registerUserDto.Password);
+            return null;
 
         }
     }
