@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 
-namespace SoftwareEngineering.Entities
+#nullable disable
+
+namespace SoftwareEngineering.Models
 {
-    public class BookSession
+    public partial class BookSession
     {
         public int Id { get; set; }
         public int UserId { get; set; }
@@ -11,5 +14,8 @@ namespace SoftwareEngineering.Entities
         public DateTime EndTime { get; set; }
         public int StartPage { get; set; }
         public int EndPage { get; set; }
+
+        public virtual Book Book { get; set; }
+        public virtual User User { get; set; }
     }
 }

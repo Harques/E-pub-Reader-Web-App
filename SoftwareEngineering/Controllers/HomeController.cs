@@ -1,11 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SoftwareEngineering.Models;
+using SoftwareEngineering.Data;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace SoftwareEngineering.Controllers
 {
@@ -20,6 +22,12 @@ namespace SoftwareEngineering.Controllers
 
         public IActionResult Index()
         {
+            using (var ctx = new EBookApplicationContext())
+            {
+                var result = ctx.Users.Where(x => x.Email == "erdem").FirstOrDefault<User>().Email;
+                ViewBag.gokce = result;
+            };
+            
             return View();
         }
 
