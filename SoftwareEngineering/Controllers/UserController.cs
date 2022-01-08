@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SoftwareEngineering.IService;
+using SoftwareEngineering.Models.DTOs;
 
 namespace SoftwareEngineering.Controllers
 {
@@ -13,10 +14,12 @@ namespace SoftwareEngineering.Controllers
         {
             _userService = userService;
         }
+
         [HttpPost]
         [Route("Register")]
-        public IActionResult Register()
+        public IActionResult Register([FromForm] RegisterUserDTO registerUserDTO)
         {
+            string a = registerUserDTO.Email;
             return Ok("Renk");
         }
         public IActionResult Get()

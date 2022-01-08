@@ -1,4 +1,5 @@
 ﻿using SoftwareEngineering.Models;
+using SoftwareEngineering.Models.DTOs;
 using System;
 using System.Linq;
 
@@ -8,7 +9,7 @@ namespace SoftwareEngineering.IService
 {
     public interface IUserService
     {
-        User Register(User oUser);
-        User Login(User oUser);
+        User Register(RegisterUserDTO user);
+        User Login(RegisterUserDTO user);
     }
 }

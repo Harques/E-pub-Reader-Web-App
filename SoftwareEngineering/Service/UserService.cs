@@ -1,26 +1,30 @@
 ﻿using SoftwareEngineering.IService;
 using SoftwareEngineering.Models;
+using SoftwareEngineering.Models.DTOs;
 
 namespace SoftwareEngineering.Service
 {
     public class UserService : IUserService
     {
-        public User Login(User oUser)
+        public User Login(RegisterUserDTO registerUserDto)
         {
-            //var user = null;
+            return null; 
+            ////var user = null;
 
-            bool isValidPassword = BCrypt.Net.BCrypt.Verify(oUser.Password, User.Password);
+            //bool isValidPassword = BCrypt.Net.BCrypt.Verify(oUser.Password, User.Password);
 
-            if (!isValidPassword)
-            {
-                return null;
-            }
-            return null;
+            //if (!isValidPassword)
+            //{
+            //    return null;
+            //}
+            //return null;
         }
 
-        public User Register(User oUser)
+        public User Register(RegisterUserDTO registerUserDto)
         {
-            oUser.Password = BCrypt.Net.BCrypt.HashPassword(oUser.Password);
+
+            User user = new User();
+            user.Hash = BCrypt.Net.BCrypt.HashPassword(registerUserDto.Password);
 
         }
     }
