@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
+using BCryptNet = BCrypt.Net.BCrypt;
 using SoftwareEngineering.Models;
 using SoftwareEngineering.Data;
 using System;
@@ -20,6 +22,11 @@ namespace SoftwareEngineering.Controllers
             _logger = logger;
         }
 
+        
+        public IActionResult Register()
+        {
+            return View();
+        }
         public IActionResult Index()
         {
             using (var ctx = new EBookApplicationContext())
