@@ -26,6 +26,10 @@ namespace SoftwareEngineering.Controllers
         public IActionResult Register()
         {
             return View();
+        } 
+        public IActionResult Login()
+        {
+            return View();
         }
         public IActionResult Index()
         {

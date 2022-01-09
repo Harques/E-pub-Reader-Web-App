@@ -11,32 +11,28 @@ namespace SoftwareEngineering.Controllers
     public class UserController : ControllerBase
     {
         IUserService _userService = null;
-        private readonly IJWTAuthenticationManager jwtAuthenticationManager;
-        //public UserController(IUserService userService)
-        //{
-        //    _userService = userService;
-        //}
-        public UserController(IJWTAuthenticationManager jwtAuthenticationManager)
+        public UserController(IUserService userService)
         {
-            this.jwtAuthenticationManager = jwtAuthenticationManager;  
+            _userService = userService;
         }
 
         [HttpPost]
         [Route("Register")]
         public IActionResult Register([FromForm] RegisterUserDTO registerUserDTO)
         {
-            string a = registerUserDTO.Email;
+            _userService.Register(registerUserDTO);
             return Ok("Renk");
         }
         [AllowAnonymous]
         [HttpPost]
         [Route("Login")]
-        public IActionResult Login()
+        public IActionResult Login([FromForm] RegisterUserDTO registerUserDTO)
         {
-            var token = jwtAuthenticationManager.Authenticate("a", "b");
+            var token = _userService.Login(registerUserDTO);
+            //var token = jwtAuthenticationManager.Authenticate("a", "b");
             if (token == null)
                 return Unauthorized();
-            return Ok(token);
+            return Ok("Yolladım abi" + token);
         }
     }
 }
