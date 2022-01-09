@@ -23,7 +23,7 @@ namespace SoftwareEngineering
                 {
                     new Claim(ClaimTypes.Name, email)
                 }),
-                Expires = DateTime.UtcNow.AddMinutes(1),
+                Expires = DateTime.UtcNow.AddHours(1),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(tokenKey),
                 SecurityAlgorithms.HmacSha256Signature)
             };
