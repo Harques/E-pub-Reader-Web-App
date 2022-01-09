@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SoftwareEngineering.IService;
 using SoftwareEngineering.Models.DTOs;
@@ -10,9 +11,14 @@ namespace SoftwareEngineering.Controllers
     public class UserController : ControllerBase
     {
         IUserService _userService = null;
-        public UserController(IUserService userService)
+        private readonly IJWTAuthenticationManager jwtAuthenticationManager;
+        //public UserController(IUserService userService)
+        //{
+        //    _userService = userService;
+        //}
+        public UserController(IJWTAuthenticationManager jwtAuthenticationManager)
         {
-            _userService = userService;
+            this.jwtAuthenticationManager = jwtAuthenticationManager;  
         }
 
         [HttpPost]
@@ -22,9 +28,15 @@ namespace SoftwareEngineering.Controllers
             string a = registerUserDTO.Email;
             return Ok("Renk");
         }
-        public IActionResult Get()
+        [AllowAnonymous]
+        [HttpPost]
+        [Route("Login")]
+        public IActionResult Login()
         {
-            return Ok("Dans");
+            var token = jwtAuthenticationManager.Authenticate("a", "b");
+            if (token == null)
+                return Unauthorized();
+            return Ok(token);
         }
     }
 }
