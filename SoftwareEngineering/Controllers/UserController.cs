@@ -54,5 +54,13 @@ namespace SoftwareEngineering.Controllers
             }
             return Ok();
         }
+        [AllowAnonymous]
+        [HttpGet]
+        [Route("AzureTest")]
+        public IActionResult AzureTest()
+        {
+            AzureFileClient.ReadFile();
+            return Ok(200);
+        }
     }
 }
