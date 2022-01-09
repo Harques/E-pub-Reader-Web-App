@@ -28,6 +28,7 @@ namespace SoftwareEngineering.Controllers
             _userService.Register(registerUserDTO);
             return Ok("Renk");
         }
+
         [AllowAnonymous]
         [HttpPost]
         [Route("Login")]
@@ -37,7 +38,7 @@ namespace SoftwareEngineering.Controllers
             Response.Cookies.Append("X-Access-Token", token, new CookieOptions() { HttpOnly = true, SameSite = SameSiteMode.Strict });
             if (token == null)
                 return Unauthorized();
-            return Ok("Yolladım abi" + token);
+            return RedirectToAction("Browse", "Home");
         }
 
         [Authorize]
