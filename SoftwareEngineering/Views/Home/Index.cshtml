@@ -2,7 +2,7 @@
     ViewData["Title"] = "Home Page";
 }
 
-<link href="/docs/4.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 <style>
 
@@ -37,6 +37,10 @@
         vertical-align: bottom;
     }
 
+    .login {
+        width: 50px;
+    }
+
     /* Style the content */
     article {
         -webkit-flex: 1;
@@ -61,7 +65,7 @@
         color: white;
     }
 
-    body2 {
+    box {
         display: -ms-flexbox;
         display: -webkit-box;
         display: flex;
@@ -113,12 +117,10 @@
 </style>
 @model SoftwareEngineering.Models.DTOs.RegisterUserDTO
 <body>
-    <div style="padding: 30px"></div>
+    <div style="padding: 30px;"></div>
     <section>
-        <nav>
-            <button type="button" class="btn btn-secondary btn-lg btn-block" onclick="@("window.location.href='" + @Url.Action("Register", "Home") + "'");">Register</button>
-        </nav>
-        <fieldset>
+
+        <nav class="login">
             @Html.AntiForgeryToken()
             @Html.ValidationSummary(true)
             @if (@ViewBag.Message != null)
@@ -140,10 +142,11 @@
                         </label>
                     </div>
                     <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+                    <button type="button" class="btn btn-secondary btn-lg btn-block" onclick="@("window.location.href='" + @Url.Action("Register", "Home") + "'");">Register</button>
                 </form>
             </body2>
-        </fieldset>
-    </section style="text-align:left;">
+        </nav>
+    </section>
     <div style="padding: 10px"></div>
     <section>
         <article>

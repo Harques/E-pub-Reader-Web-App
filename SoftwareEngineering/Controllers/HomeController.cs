@@ -35,6 +35,10 @@ namespace SoftwareEngineering.Controllers
         {
             return View();
         }
+        public IActionResult Book()
+        {
+            return View();
+        }
         public IActionResult Index()
         {
             //using (var ctx = new EBookApplicationContext())
