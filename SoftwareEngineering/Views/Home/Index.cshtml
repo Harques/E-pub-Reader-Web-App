@@ -6,11 +6,18 @@
 
 <style>
 
+    html{
+        margin:0;
+        height:100%;
+    }
+
     body {
         font-family: Arial, Helvetica, sans-serif;
         background-image: url('https://images5.alphacoders.com/919/919004.jpg');
         background-attachment: fixed;
         background-size: cover;
+        height:100%;
+        margin:0;
     }
 
     /* Style the header */
@@ -63,6 +70,7 @@
         background-color: #fff;
         text-align: center;
         color: white;
+        position:fixed;
     }
 
     box {
@@ -116,7 +124,7 @@
 
 </style>
 @model SoftwareEngineering.Models.DTOs.RegisterUserDTO
-<body>
+
     <div style="padding: 30px;"></div>
     <section>
 
@@ -146,7 +154,7 @@
                 </form>
             </body2>
         </nav>
-    </section>
+    </section style="text-align:left;">
     <div style="padding: 10px"></div>
     <section>
         <article>
@@ -159,4 +167,3 @@
         </article>
     </section>
     <div style="padding: 30px"></div>
-</body>
