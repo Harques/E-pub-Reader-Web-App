@@ -2,7 +2,7 @@
 }
 @model SoftwareEngineering.Models.DTOs.RegisterUserDTO;
 <link href="/docs/4.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 <style>
     body {
@@ -23,6 +23,8 @@
     section {
         display: -webkit-flex;
         display: flex;
+        background-color: #fff;
+        padding: 20px;
     }
 
     /* Style the navigation menu */
@@ -34,11 +36,11 @@
         padding: 20px;
     }
 
-    /* Style the list inside the menu */
-    nav ul {
-        list-style-type: none;
-        padding: 0;
-    }
+        /* Style the list inside the menu */
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
 
     /* Style the content */
     article {
@@ -68,87 +70,78 @@
 <body>
     <div style="padding: 30px"></div>
     <section>
-        <div >
-            <form>
+        <form>
 
-                <div class="row">
-                    <div class="col-md-6 mb-4">
+            <div class="row">
+                <div class="col-md-6 mb-4">
 
-                        <div class="form-outline">
-                            <input type="text" id="firstName" class="form-control form-control-lg" />
-                            <label class="form-label" for="firstName">First Name</label>
-                        </div>
-
+                    <div class="form-outline">
+                        <input type="text" id="firstName" class="form-control form-control-lg" />
+                        <label class="form-label" for="firstName">First Name</label>
                     </div>
-                    <div class="col-md-6 mb-4">
+                </div>
+                <div class="col-md-6 mb-4">
 
-                        <div class="form-outline">
-                            <input type="text" id="lastName" class="form-control form-control-lg" />
-                            <label class="form-label" for="lastName">Last Name</label>
-                        </div>
+                    <div class="form-outline">
+                        <input type="text" id="lastName" class="form-control form-control-lg" />
+                        <label class="form-label" for="lastName">Last Name</label>
+                    </div>
+                </div>
+            </div>
 
+            <div class="row">
+                <div class="col-md-6 mb-4 d-flex align-items-center">
+
+                    <div class="form-outline datepicker w-100">
+                        <input type="text" class="form-control form-control-lg" id="birthdayDate" />
+                        <label for="birthdayDate" class="form-label">Birthday</label>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+
+                    <h6 class="mb-2 pb-1">Gender: </h6>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="femaleGender"
+                               value="option1" checked />
+                        <label class="form-check-label" for="femaleGender">Female</label>
+                    </div>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="maleGender"
+                               value="option2" />
+                        <label class="form-check-label" for="maleGender">Male</label>
+                    </div>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="otherGender"
+                               value="option3" />
+                        <label class="form-check-label" for="otherGender">Other</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-6 mb-4 pb-2">
+                    <div class="form-outline">
+                        <input type="email" id="inputEmail" class="form-control" placeholder="Email address"
+                               pattern="[a-z0-9._%+-]+@@[a-z0-9.-]+\.[a-z]{2,}$" required autofocus />
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-md-6 mb-4 d-flex align-items-center">
-
-                        <div class="form-outline datepicker w-100">
-                            <input type="text" class="form-control form-control-lg" id="birthdayDate" />
-                            <label for="birthdayDate" class="form-label">Birthday</label>
-                        </div>
-
-                    </div>
-                    <div class="col-md-6 mb-4">
-
-                        <h6 class="mb-2 pb-1">Gender: </h6>
-
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="femaleGender"
-                                value="option1" checked />
-                            <label class="form-check-label" for="femaleGender">Female</label>
-                        </div>
-
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="maleGender"
-                                value="option2" />
-                            <label class="form-check-label" for="maleGender">Male</label>
-                        </div>
-
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="otherGender"
-                                value="option3" />
-                            <label class="form-check-label" for="otherGender">Other</label>
-                        </div>
-
+                <div class="col-md-6 mb-4 pb-2">
+                    <div class="form-outline">
+                        <input type="tel" id="phoneNumber" class="form-control" placeholder="Phone Number"
+                               pattern="^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$" required autofocus />
                     </div>
                 </div>
+            </div>
 
-                <div class="row">
-
-                    <div class="col-md-6 mb-4 pb-2">
-                        <div class="form-outline">
-                            <input type="email" id="inputEmail" class="form-control" placeholder="Email address"
-                                pattern="[a-z0-9._%+-]+@@[a-z0-9.-]+\.[a-z]{2,}$" required autofocus />
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 mb-4 pb-2">
-                        <div class="form-outline">
-                            <input type="tel" id="phoneNumber" class="form-control" placeholder="Phone Number"
-                                pattern="^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$" required autofocus />
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="mt-4 pt-2">
-                    <input class="btn btn-primary btn-lg" type="submit" value="Submit" />
-                </div>
-
-            </form>
-        </div>
-
+            <div class="mt-4 pt-2">
+                <input class="btn btn-primary btn-lg" type="submit" value="Submit" />
+            </div>
+        </form>
     </section>
     <div style="padding: 30px"></div>
 </body>
