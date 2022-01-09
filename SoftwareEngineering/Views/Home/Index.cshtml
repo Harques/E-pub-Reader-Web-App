@@ -3,113 +3,110 @@
 }
 @model SoftwareEngineering.Models.DTOs.RegisterUserDTO
 
-    <link href="/docs/4.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link href="/docs/4.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <style>
+<style>
 
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background-image: url('https://images5.alphacoders.com/919/919004.jpg');
-            background-attachment: fixed;
-            background-size: cover;
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        background-image: url('https://images5.alphacoders.com/919/919004.jpg');
+        background-attachment: fixed;
+        background-size: cover;
+    }
+
+    /* Style the header */
+    header {
+        background-color: #fff;
+        text-align: center;
+        color: white;
+    }
+
+    /* Container for flexboxes */
+    section {
+        display: -webkit-flex;
+        display: flex;
+    }
+
+    /* Style the navigation menu */
+    nav {
+        -webkit-flex: 1;
+        -ms-flex: 1;
+        flex: 1;
+        background-color: #fff;
+        padding: 20px;
+    }
+
+        /* Style the list inside the menu */
+        nav ul {
+            list-style-type: none;
+            padding: 0;
         }
 
-        /* Style the header */
-        header {
-            background-color: #fff;
-            text-align: center;
-            color: white;
-        }
+    /* Style the content */
+    article {
+        -webkit-flex: 1;
+        -ms-flex: 1;
+        flex: 1;
+        padding: 30px;
+        background: rgba(255, 255, 255, 0.8)
+    }
 
-        /* Container for flexboxes */
-        section {
-            display: -webkit-flex;
-            display: flex;
-        }
+    fieldset {
+        -webkit-flex: 3;
+        -ms-flex: 3;
+        flex: 3;
+        background-color: #f1f1f1;
+        padding: 30px;
+    }
 
-        /* Style the navigation menu */
-        nav {
-            -webkit-flex: 1;
-            -ms-flex: 1;
-            flex: 1;
-            background-color: #fff;
-            padding: 20px;
-        }
+    /* Style the footer */
+    footer {
+        background-color: #fff;
+        text-align: center;
+        color: white;
+    }
+</style>
 
-            /* Style the list inside the menu */
-            nav ul {
-                list-style-type: none;
-                padding: 0;
+<body>
+    <div style="padding: 30px"></div>
+    <section>
+        <nav>
+            <button type="button" class="btn btn-secondary btn-lg btn-block" onclick="@("window.location.href='" + @Url.Action("Register", "Home") + "'");">Register</button>
+        </nav>
+        <fieldset>
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            @if (@ViewBag.Message != null)
+            {
+                <div style="border: 1px solid red">
+                    @ViewBag.Message
+                </div>
             }
-
-        /* Style the content */
-        article {
-            -webkit-flex: 1;
-            -ms-flex: 1;
-            flex: 1;
-            padding: 30px;
-            background: rgba(255, 255, 255, 0.8)
-        }
-
-        fieldset {
-            -webkit-flex: 3;
-            -ms-flex: 3;
-            flex: 3;
-            background-color: #f1f1f1;
-            padding: 30px;
-        }
-
-        /* Style the footer */
-        footer {
-            background-color: #fff;
-            text-align: center;
-            color: white;
-        }
-    </style>
-
-    <body>
-        <div style="padding: 30px"></div>
-        <section>
-            <nav>
-                <ul>
-                    <button type="button" class="btn btn-primary btn-lg btn-block">Login</button>
-                    <button type="button" class="btn btn-secondary btn-lg btn-block">Register</button>
-                </ul>
-            </nav>
-            <fieldset>
-                @Html.AntiForgeryToken()
-                @Html.ValidationSummary(true)
-                @if (@ViewBag.Message != null)
-                {
-                    <div style="border: 1px solid red">
-                        @ViewBag.Message
-                    </div>
-                }
-                <form class="form-signin">
-                    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-                    <label for="inputEmail" class="sr-only">Email address</label>
-                    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" pattern="[a-z0-9._%+-]+@@[a-z0-9.-]+\.[a-z]{2,}$" required autofocus>
-                    <label for="inputPassword" class="sr-only">Password</label>
-                    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-                    <div class="checkbox mb-3">
-                        <label>
-                            <input type="checkbox" value="remember-me"> Remember me
-                        </label>
-                    </div>
-                    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-                </form>
-            </fieldset>
-        </section>
-        <div style="padding: 10px"></div>
-        <section>
-            <article>
-                <p>
-                    In eget nisl id sapien gravida posuere. Aliquam consequat eget massa a tristique. Vivamus id ex pellentesque, rhoncus metus in, euismod nulla. Mauris quis pretium dui, vitae suscipit nibh. Nulla condimentum porttitor orci a posuere. Nunc placerat egestas rutrum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed varius semper risus et posuere.
-                </p>
-                <p>
-                    In eu tristique dui. Sed felis felis, finibus maximus consectetur at, blandit vel mauris. Mauris efficitur justo erat, vitae molestie felis lobortis id. Pellentesque accumsan massa sagittis nisl tristique porta. Proin a lorem congue, congue nibh eget, tempus neque. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed at libero orci. Maecenas porta elit non egestas dapibus. Mauris consectetur, nisl vitae consectetur sodales, justo lorem efficitur elit, auctor posuere quam tellus id ligula.
-                </p>
-            </article>
-        </section>
-        <div style="padding: 30px"></div>
-    </body>
+            <form class="form-signin">
+                <h1 class="h3 mb-3 font-weight-normal">Please login</h1>
+                <label for="inputEmail" class="sr-only">Email address</label>
+                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" pattern="[a-z0-9._%+-]+@@[a-z0-9.-]+\.[a-z]{2,}$" required autofocus>
+                <label for="inputPassword" class="sr-only">Password</label>
+                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                <div class="checkbox mb-3">
+                    <label>
+                        <input type="checkbox" value="remember-me"> Remember me
+                    </label>
+                </div>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+            </form>
+        </fieldset>
+    </section>
+    <div style="padding: 10px"></div>
+    <section>
+        <article>
+            <p>
+                In eget nisl id sapien gravida posuere. Aliquam consequat eget massa a tristique. Vivamus id ex pellentesque, rhoncus metus in, euismod nulla. Mauris quis pretium dui, vitae suscipit nibh. Nulla condimentum porttitor orci a posuere. Nunc placerat egestas rutrum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed varius semper risus et posuere.
+            </p>
+            <p>
+                In eu tristique dui. Sed felis felis, finibus maximus consectetur at, blandit vel mauris. Mauris efficitur justo erat, vitae molestie felis lobortis id. Pellentesque accumsan massa sagittis nisl tristique porta. Proin a lorem congue, congue nibh eget, tempus neque. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed at libero orci. Maecenas porta elit non egestas dapibus. Mauris consectetur, nisl vitae consectetur sodales, justo lorem efficitur elit, auctor posuere quam tellus id ligula.
+            </p>
+        </article>
+    </section>
+    <div style="padding: 30px"></div>
+</body>
