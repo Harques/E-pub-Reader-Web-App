@@ -24,6 +24,7 @@
     section {
         display: -webkit-flex;
         display: flex;
+        width: 70%;
     }
 
     /* Style the navigation menu */
@@ -115,33 +116,35 @@
 </style>
 @model SoftwareEngineering.Models.DTOs.RegisterUserDTO
 <body>
-    <div style="padding: 30px"></div>
+    <div style="padding: 30px;"></div>
     <section>
-        <nav class="login">
-            @Html.AntiForgeryToken()
-            @Html.ValidationSummary(true)
-            @if (@ViewBag.Message != null)
-            {
-                <div style="border: 1px solid red">
-                    @ViewBag.Message
-                </div>
-            }
-            <body2 class="text-center">
-                <form class="form-signin" enctype="multipart/form-data" method="post" action="/api/User/Login">
-                    <h1 class="h3 mb-3 font-weight-normal">Login</h1>
-                    <label for="inputEmail" class="sr-only">Email address</label>
-                    <input asp-for="Email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-                    <label for="inputPassword" class="sr-only">Password</label>
-                    <input asp-for="Password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-                    <div class="checkbox mb-3">
-                    <label>
-                    <input type="checkbox" value="remember-me"> Remember me
-                    </label>
+
+            <nav class="login">
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                @if (@ViewBag.Message != null)
+                {
+                    <div style="border: 1px solid red">
+                        @ViewBag.Message
                     </div>
-                    <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+                }
+                <body2 class="text-center">
+                    <form class="form-signin" enctype="multipart/form-data" method="post" action="/api/User/Login">
+                        <h1 class="h3 mb-3 font-weight-normal">Login</h1>
+                        <label for="inputEmail" class="sr-only">Email address</label>
+                        <input asp-for="Email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+                        <label for="inputPassword" class="sr-only">Password</label>
+                        <input asp-for="Password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                        <div class="checkbox mb-3">
+                            <label>
+                                <input type="checkbox" value="remember-me"> Remember me
+                            </label>
+                        </div>
+                        <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+                        <button type="button" class="btn btn-secondary btn-lg btn-block" onclick="@("window.location.href='" + @Url.Action("Register", "Home") + "'");">Register</button>
                     </form>
-            </body2>
-        </fieldset>
+                </body2>
+            </nav>
     </section>
     <div style="padding: 10px"></div>
     <section>
