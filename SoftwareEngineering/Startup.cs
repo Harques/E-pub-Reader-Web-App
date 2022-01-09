@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -49,8 +50,24 @@ namespace SoftwareEngineering
                     ValidateIssuer = false,
                     ValidateAudience = false
 
-            };
-        });
+                };
+                x.Events = new JwtBearerEvents();
+                x.Events.OnMessageReceived = context =>
+                {
+                    if (context.Request.Cookies.ContainsKey("X-Access-Token"))
+                    {
+                        context.Token = context.Request.Cookies["X-Access-Token"];
+                    }
+
+                    return Task.CompletedTask;
+                };
+            }).AddCookie(options =>
+            {
+                options.Cookie.SameSite = SameSiteMode.Strict;
+                options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+                options.Cookie.IsEssential = true;
+            });
+
             services.AddSingleton<IJWTAuthenticationManager>(new JWTAuthenticationManager(key));
         }
 

@@ -29,10 +29,19 @@ namespace SoftwareEngineering.Controllers
         public IActionResult Login([FromForm] RegisterUserDTO registerUserDTO)
         {
             var token = _userService.Login(registerUserDTO);
+            Response.Cookies.Append("X-Access-Token", token, new CookieOptions() { HttpOnly = true, SameSite = SameSiteMode.Strict });
             //var token = jwtAuthenticationManager.Authenticate("a", "b");
             if (token == null)
                 return Unauthorized();
             return Ok("Yolladım abi" + token);
+        }
+
+        [Authorize]
+        [HttpGet]
+        [Route("Values")]
+        public IActionResult Values()
+        {
+            return Ok("200");
         }
     }
 }
