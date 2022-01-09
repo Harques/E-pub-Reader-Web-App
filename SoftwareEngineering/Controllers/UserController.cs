@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SoftwareEngineering.IService;
 using SoftwareEngineering.Models.DTOs;
+using System.IO;
+using System.Threading.Tasks;
+using VersOne.Epub;
 
 namespace SoftwareEngineering.Controllers
 {
@@ -11,9 +14,11 @@ namespace SoftwareEngineering.Controllers
     public class UserController : ControllerBase
     {
         IUserService _userService = null;
+        Epub epub = null;
         public UserController(IUserService userService)
         {
             _userService = userService;
+            epub = new Epub();
         }
 
         [HttpPost]
@@ -30,7 +35,6 @@ namespace SoftwareEngineering.Controllers
         {
             var token = _userService.Login(registerUserDTO);
             Response.Cookies.Append("X-Access-Token", token, new CookieOptions() { HttpOnly = true, SameSite = SameSiteMode.Strict });
-            //var token = jwtAuthenticationManager.Authenticate("a", "b");
             if (token == null)
                 return Unauthorized();
             return Ok("Yolladım abi" + token);
@@ -57,10 +61,10 @@ namespace SoftwareEngineering.Controllers
         [AllowAnonymous]
         [HttpGet]
         [Route("AzureTest")]
-        public IActionResult AzureTest()
+        public async Task<IActionResult> AzureTestAsync()
         {
-            AzureFileClient.ReadFile();
-            return Ok(200);
+            EpubBook temp = await epub.ReadFile();
+            return Ok(temp.Content.Html);
         }
     }
 }

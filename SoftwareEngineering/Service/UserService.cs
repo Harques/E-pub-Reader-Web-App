@@ -23,15 +23,6 @@ namespace SoftwareEngineering.Service
             if (isValidPassword)
                 return jwtAuthenticationManager.Authenticate("a", "b");
             return null;
-
-
-            //bool isValidPassword = BCrypt.Net.BCrypt.Verify(oUser.Password, User.Password);
-
-            //if (!isValidPassword)
-            //{
-            //    return null;
-            //}
-            //return null;
         }
 
         public User Register(RegisterUserDTO registerUserDto)
@@ -41,7 +32,6 @@ namespace SoftwareEngineering.Service
             user.Hash = BCrypt.Net.BCrypt.HashPassword(registerUserDto.Password);
             context.Add<User>(user);
             context.SaveChanges();
-            //jwtAuthenticationManager.Authenticate("a", "b");
             return null;
 
         }
