@@ -43,5 +43,16 @@ namespace SoftwareEngineering.Controllers
         {
             return Ok("200");
         }
+        [AllowAnonymous]
+        [HttpGet]
+        [Route("DeleteCookies")]
+        public IActionResult DeleteCookies()
+        {
+            foreach (var cookie in Request.Cookies.Keys)
+            {
+                Response.Cookies.Delete(cookie);
+            }
+            return Ok();
+        }
     }
 }
