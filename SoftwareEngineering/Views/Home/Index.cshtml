@@ -72,8 +72,8 @@
         <section>
             <nav>
                 <ul>
-                    <li> <a href="#"> Login</a> </li>
-                    <li> <a href="#"> Register</a> </li>
+                    <button type="button" class="btn btn-primary btn-lg btn-block">Login</button>
+                    <button type="button" class="btn btn-secondary btn-lg btn-block">Register</button>
                 </ul>
             </nav>
             <fieldset>
@@ -85,36 +85,10 @@
                         @ViewBag.Message
                     </div>
                 }
-                <table>
-                    <div>Login</div>
-                    <tr>
-                        <td>@Html.LabelFor(a => a.Email)</td>
-                        <td>@Html.TextBoxFor(a => a.Email)</td>
-                        <td>@Html.ValidationMessageFor(a => a.Email)</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            @Html.LabelFor(a => a.Password)
-                        </td>
-                        <td>
-                            @Html.PasswordFor(a => a.Password)
-                        </td>
-                        <td>
-                            @Html.ValidationMessageFor(a => a.Password)
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>
-                            <input type="submit" value="Login" />
-                        </td>
-                        <td></td>
-                    </tr>
-                </table>
                 <form class="form-signin">
                     <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
                     <label for="inputEmail" class="sr-only">Email address</label>
-                    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+                    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" pattern="[a-z0-9._%+-]+@@[a-z0-9.-]+\.[a-z]{2,}$" required autofocus>
                     <label for="inputPassword" class="sr-only">Password</label>
                     <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
                     <div class="checkbox mb-3">
@@ -123,7 +97,6 @@
                         </label>
                     </div>
                     <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-                    <p class="mt-5 mb-3 text-muted">&copy; 2017-2019</p>
                 </form>
             </fieldset>
         </section>
