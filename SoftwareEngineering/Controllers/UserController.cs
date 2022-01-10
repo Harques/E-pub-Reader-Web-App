@@ -32,13 +32,13 @@ namespace SoftwareEngineering.Controllers
         [AllowAnonymous]
         [HttpPost]
         [Route("Login")]
-        public IActionResult Login([FromForm] RegisterUserDTO registerUserDTO)
+        public IActionResult Login([FromForm] LoginUserDTO loginUserDTO)
         {
-            var token = _userService.Login(registerUserDTO);
-            Response.Cookies.Append("X-Access-Token", token, new CookieOptions() { HttpOnly = true, SameSite = SameSiteMode.Strict });
+            var token = _userService.Login(loginUserDTO);
             if (token == null)
-                return Unauthorized();
-            return RedirectToAction("Browse", "Home");
+                return RedirectToAction("Index", "Home", new {isLogged = false});
+            Response.Cookies.Append("X-Access-Token", token, new CookieOptions() { HttpOnly = true, SameSite = SameSiteMode.Strict });
+            return RedirectToAction("Browse", "Home", new {isLogged = true});
         }
 
         [AllowAnonymous]

@@ -10,6 +10,6 @@ namespace SoftwareEngineering.IService
     public interface IUserService
     {
         User Register(RegisterUserDTO registerUserDTO);
-        string Login(RegisterUserDTO registerUserDTO);
+        string Login(LoginUserDTO loginUserDTO);
     }
 }

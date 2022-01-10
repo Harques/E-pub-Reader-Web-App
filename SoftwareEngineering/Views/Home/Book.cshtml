@@ -93,7 +93,6 @@
         var url = params && params.get("url") && decodeURIComponent(params.get("url"));
         var currentSectionIndex = (params && params.get("loc")) ? params.get("loc") : undefined;
 
-        // Load the opf
         var link = '@ViewBag.url';
         var book = ePub(link);
         var rendition = book.renderTo("area", {
@@ -142,22 +141,6 @@
 
         rendition.on("rendered", function(section){
           var current = book.navigation && book.navigation.get(section.href);
-
-          //if (current) {
-          //  var $select = document.getElementById("toc");
-          //  var $selected = $select.querySelector("option[selected]");
-          //  if ($selected) {
-          //    $selected.removeAttribute("selected");
-          //  }
-
-          //  var $options = $select.querySelectorAll("option");
-          //  for (var i = 0; i < $options.length; ++i) {
-          //    let selected = $options[i].getAttribute("ref") === current.href;
-          //    if (selected) {
-          //      $options[i].setAttribute("selected", "");
-          //    }
-          //  }
-          //}
 
         });
 

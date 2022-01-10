@@ -125,6 +125,7 @@
                             <input type="checkbox" value="remember-me"> Remember me
                         </label>
                     </div>
+                    <h5 style="color:red; display:none;" id="error">Email or password is incorrect.</h5>
                     <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
                     <button type="button" class="btn btn-secondary btn-lg btn-block" onclick="@("window.location.href='" + @Url.Action("Register", "Home") + "'");">Register</button>
                 </form>
@@ -134,5 +135,15 @@
             document.addEventListener('DOMContentLoaded', function(){
                 var nav = document.getElementsByTagName("header");
                 nav[0].style.display = "none";
+                var url = new URL(window.location.href);
+                var isLogged = url.searchParams.get("isLogged")
+                var error = document.getElementById("error");
+                if(isLogged.trim() === "False"){
+                    if(isLogged != null){
+                        error.style.display = "block";
+                    }
+                }
+                    
+                
             })
         </script>
