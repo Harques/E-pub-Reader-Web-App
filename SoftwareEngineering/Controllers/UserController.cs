@@ -41,23 +41,16 @@ namespace SoftwareEngineering.Controllers
             return RedirectToAction("Browse", "Home");
         }
 
-        [Authorize]
-        [HttpGet]
-        [Route("Values")]
-        public IActionResult Values()
-        {
-            return Ok("200");
-        }
         [AllowAnonymous]
         [HttpGet]
-        [Route("DeleteCookies")]
-        public IActionResult DeleteCookies()
+        [Route("LogOut")]
+        public IActionResult LogOut()
         {
             foreach (var cookie in Request.Cookies.Keys)
             {
                 Response.Cookies.Delete(cookie);
             }
-            return Ok();
+            return RedirectToAction("Index", "Home");
         }
 
     }

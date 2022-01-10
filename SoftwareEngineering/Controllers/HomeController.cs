@@ -11,6 +11,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using VersOne.Epub;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SoftwareEngineering.Controllers
 {
@@ -27,17 +28,13 @@ namespace SoftwareEngineering.Controllers
             _context = new EBookApplicationContext();
         }
 
-        
+        [AllowAnonymous]
         public IActionResult Register()
         {
             return View();
         } 
-        public IActionResult Login()
-        {
 
-            return View();
-        }
-
+        [Authorize]
         public async Task<IActionResult> Browse()
         {
             EpubBook[] epubArray = await _epub.ReadAllFiles();
@@ -48,21 +45,16 @@ namespace SoftwareEngineering.Controllers
             }
             return View(epubImgString);
         }
+        [Authorize]
         public IActionResult Book(int name)
         {
             var books = _context.Books.OrderBy(b => b.Name).ToList();
-            //EpubBook epubBook = await _epub.ReadFile(books[name].BookLink);
             ViewBag.url = books[name].BookLink;
             return View();
         }
+        [AllowAnonymous]
         public IActionResult Index()
         {
-            //using (var ctx = new EBookApplicationContext())
-            //{
-            //    var result = ctx.Users.Where(x => x.Email == "erdem").FirstOrDefault<User>().Email;
-            //    ViewBag.gokce = result;
-            //};
-            
             return View();
         }
 

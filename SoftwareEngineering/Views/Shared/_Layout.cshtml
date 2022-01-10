@@ -8,17 +8,29 @@
     <link rel="stylesheet" href="~/css/site.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.5/jszip.min.js"></script>
     <script src="~/js/epub.min.js"></script>
-    
-<style>
-    main {
-        height:100%;
-        vertical-align:middle;
-    }
-</style>
+
+    <style>
+        main {
+            height: 100%;
+            vertical-align: middle;
+        }
+
+        .centered {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            /* bring your own prefixes */
+            transform: translate(-50%, -50%);
+        }
+        a.disabled {
+        pointer-events: none;
+        cursor: default;
+        }
+    </style>
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav style="background:rgb(255,255,255,0.3)!important;" class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">E-Book Application</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -35,20 +47,24 @@
                                 <a class="dropdown-item disabled" href="#">Audio Books</a>
                             </div>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="User" asp-action="LogOut" aria-haspopup="true" aria-expanded="false">Log Out</a>
+                        </li>
                     </ul>
+                    
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container">
+    <div class="container centered">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer style="background:rgb(255,255,255,0.3);" class="border-top footer text-muted">
         <div class="container">
-            &copy; 2022 - E-Book Application - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <a class="btn disabled" asp-area="">Admin Login</a><a class="btn disabled" asp-area="">Book Provider Login</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
