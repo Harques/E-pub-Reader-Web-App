@@ -30,6 +30,11 @@ namespace SoftwareEngineering.Service
         public User Register(RegisterUserDTO registerUserDto)
         {
             User user = new User();
+            var testUser = context.Users.Where(x => x.Email == registerUserDto.Email).FirstOrDefault<User>();
+            if(testUser == null)
+            {
+
+            }
             user.Email = registerUserDto.Email;
             user.Hash = BCrypt.Net.BCrypt.HashPassword(registerUserDto.Password);
             context.Add<User>(user);
