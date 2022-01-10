@@ -87,13 +87,12 @@
                 <div style="background:rgb(255,255,255,0.5)" class="card shadow-2-strong card-registration" style="border-radius: 15px;">
                     <div class="card-body p-4 p-md-5">
                         <h3 style="text-align:center" class="mb-4 pb-2 pb-md-0 mb-md-5">Registration Form</h3>
-                        <form>
-
+                        <form enctype="multipart/form-data" method="post" action="/api/User/Register">
                             <div class="row">
                                 <div class="col-md-6 mb-4">
                                     <div class="form-outline">
                                         <label class="form-label" for="email">Email</label>
-                                        <input asp-for="Email" style="background:rgb(255,255,255,0.8)" type="email" id="emailAddress" class="form-control form-control-lg" placeholder="name@example.com"/>
+                                        <input asp-for="Email" style="background:rgb(255,255,255,0.8)" type="email" id="emailAddress" class="form-control form-control-lg" placeholder="name@example.com" required autofocus />
                                         <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                                     </div>
                                 </div>
@@ -101,7 +100,7 @@
 
                                     <div class="form-outline">
                                         <label class="form-label" for="password">Password</label>
-                                        <input asp-for="Password" style="background:rgb(255,255,255,0.8)" type="password" id="password" class="form-control form-control-lg" placeholder="Password"/>
+                                        <input asp-for="Password" style="background:rgb(255,255,255,0.8)" type="password" id="password" class="form-control form-control-lg" placeholder="Password" required/>
                                         <small id="passwordHelp" class="form-text text-muted">We recommend not using passwords that you use on other platforms.</small>
                                     </div>
                                 </div>
@@ -114,18 +113,18 @@
                                         <label for="birthdayDate" class="form-label">Birthday</label>
                                         <input asp-for="BirthDate" style="background:rgb(255,255,255,0.8)" type="date"
                                                class="form-control form-control-lg"
-                                               id="birthdayDate" />
+                                               id="birthdayDate" required />
                                     </div>
 
                                 </div>
                                 <div class="col-md-6 mb-4">
                                     <div class="form-outline">
                                         <label class="form-label" for="phoneNumber">Phone Number</label>
-                                        <input asp-for="Phone" style="background:rgb(255,255,255,0.8)" type="tel" id="phoneNumber" class="form-control form-control-lg" placeholder="+905xxyyyzztt" pattern="^+90\d{3}\d{3}\d{4}$"/>
+                                        <input asp-for="Phone" style="background:rgb(255,255,255,0.8)" type="tel" id="phoneNumber" class="form-control form-control-lg" placeholder="+905xxyyyzztt" pattern="^+90\d{3}\d{3}\d{4}$" required/>
                                     </div>
                                 </div>
                             </div>
-
+                            <h5 style="color:red; display:none;" id="error">Account already exists.</h5>
                             <div style="text-align:center" class="mt-4 pt-2">
                                 <input class="btn btn-primary btn-lg" type="submit" value="Submit" />
                             </div>
@@ -140,6 +139,14 @@
         document.addEventListener('DOMContentLoaded', function(){
             var nav = document.getElementsByTagName("header");
             nav[0].style.display = "none";
+            var url = new URL(window.location.href);
+            var isRegistered = url.searchParams.get("isRegistered")
+            var error = document.getElementById("error");
+            if(isLogged.trim() === "False"){
+                if(isLogged != null){
+                    error.style.display = "block";
+                    }
+               }
         })
     </script>
 </body>

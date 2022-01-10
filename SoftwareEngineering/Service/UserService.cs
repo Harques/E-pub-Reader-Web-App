@@ -27,19 +27,22 @@ namespace SoftwareEngineering.Service
             return null;
         }
 
-        public User Register(RegisterUserDTO registerUserDto)
+        public string Register(RegisterUserDTO registerUserDto)
         {
             User user = new User();
             var testUser = context.Users.Where(x => x.Email == registerUserDto.Email).FirstOrDefault<User>();
-            if(testUser == null)
-            {
-
-            }
+            if(testUser != null)
+                return null;
+            var testUser2 = context.Users.Where(x => x.Phone == registerUserDto.Phone).FirstOrDefault<User>();
+            if (testUser2 != null)
+                return null;
             user.Email = registerUserDto.Email;
             user.Hash = BCrypt.Net.BCrypt.HashPassword(registerUserDto.Password);
+            user.Phone = registerUserDto.Phone;
+            user.BirthDate = registerUserDto.BirthDate;
             context.Add<User>(user);
             context.SaveChanges();
-            return null;
+            return jwtAuthenticationManager.Authenticate();
 
         }
     }
