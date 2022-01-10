@@ -18,10 +18,8 @@
     }
 
     img {
-        max-width: 300px;
-        max-height: 300px;
-        width: auto;
-        height: auto;
+        width: 200px;
+        height: 300px;
     }
 
     footer {
@@ -41,7 +39,7 @@
         <div class="row">
             @for (int i = 0; i < Model.Length; i++)
             {
-                <img style="margin:5px; border:4px solid black" src="@Model[i]" onclick="@("window.location.href='" + @Url.Action("Book", "Home", new{name=i}) + "'");" />
+                <img class="shadow-lg mb-5 rounded" style="margin:5px;" src="@Model[i]" onclick="@("window.location.href='" + @Url.Action("Book", "Home") + "'");" />
             }
 
         </div>
