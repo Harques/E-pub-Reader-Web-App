@@ -16,18 +16,25 @@ namespace SoftwareEngineering.Service
             this.jwtAuthenticationManager = jwtAuthenticationManager;
             context = new EBookApplicationContext();
         }
-        public string Login(RegisterUserDTO registerUserDTO)
+        public string Login(LoginUserDTO loginUserDTO)
         {
-            var user = context.Users.Where(x => x.Email == registerUserDTO.Email).FirstOrDefault<User>();
-            bool isValidPassword = BCrypt.Net.BCrypt.Verify(registerUserDTO.Password, user.Hash);
+            var user = context.Users.Where(x => x.Email == loginUserDTO.Email).FirstOrDefault<User>();
+            if (user == null)
+                return null;
+            bool isValidPassword = BCrypt.Net.BCrypt.Verify(loginUserDTO.Password, user.Hash);
             if (isValidPassword)
-                return jwtAuthenticationManager.Authenticate("a", "b");
+                return jwtAuthenticationManager.Authenticate();
             return null;
         }
 
         public User Register(RegisterUserDTO registerUserDto)
         {
             User user = new User();
+            var testUser = context.Users.Where(x => x.Email == registerUserDto.Email).FirstOrDefault<User>();
+            if(testUser == null)
+            {
+
+            }
             user.Email = registerUserDto.Email;
             user.Hash = BCrypt.Net.BCrypt.HashPassword(registerUserDto.Password);
             context.Add<User>(user);

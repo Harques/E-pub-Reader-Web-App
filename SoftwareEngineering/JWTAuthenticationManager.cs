@@ -13,7 +13,7 @@ namespace SoftwareEngineering
         {
             this.key = key;
         }
-        public string Authenticate(string email, string password)
+        public string Authenticate()
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var tokenKey = Encoding.ASCII.GetBytes(key);
@@ -21,7 +21,7 @@ namespace SoftwareEngineering
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.Name, email)
+                    new Claim(ClaimTypes.Name, "User")
                 }),
                 Expires = DateTime.UtcNow.AddHours(1),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(tokenKey),
