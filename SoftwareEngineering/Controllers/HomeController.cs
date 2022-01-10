@@ -17,12 +17,14 @@ namespace SoftwareEngineering.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private Epub epub = null;
+        private Epub _epub = null;
+        private EBookApplicationContext _context;
 
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
-            epub = new Epub();
+            _epub = new Epub();
+            _context = new EBookApplicationContext();
         }
 
         
@@ -38,7 +40,7 @@ namespace SoftwareEngineering.Controllers
 
         public async Task<IActionResult> Browse()
         {
-            EpubBook[] epubArray = await epub.ReadAllFiles();
+            EpubBook[] epubArray = await _epub.ReadAllFiles();
             string[] epubImgString = new string[epubArray.Length];
             for(int i = 0; i< epubArray.Length; i++)
             {
@@ -46,8 +48,11 @@ namespace SoftwareEngineering.Controllers
             }
             return View(epubImgString);
         }
-        public IActionResult Book()
+        public IActionResult Book(int name)
         {
+            var books = _context.Books.OrderBy(b => b.Name).ToList();
+            //EpubBook epubBook = await _epub.ReadFile(books[name].BookLink);
+            ViewBag.url = books[name].BookLink;
             return View();
         }
         public IActionResult Index()

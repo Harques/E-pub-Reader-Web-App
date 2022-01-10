@@ -59,13 +59,6 @@ namespace SoftwareEngineering.Controllers
             }
             return Ok();
         }
-        //[AllowAnonymous]
-        //[HttpGet]
-        //[Route("AzureTest")]
-        //public async Task<IActionResult> AzureTestAsync()
-        //{
-        //    EpubBook temp = await epub.ReadFile();
-        //    return Ok(temp.Content.Html);
-        //}
+
     }
 }

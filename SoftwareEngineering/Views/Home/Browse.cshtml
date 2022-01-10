@@ -41,7 +41,7 @@
         <div class="row">
             @for (int i = 0; i < Model.Length; i++)
             {
-                <img style="margin:5px; border:4px solid black" src="@Model[i]" onclick="@("window.location.href='" + @Url.Action("Book", "Home") + "'");" />
+                <img style="margin:5px; border:4px solid black" src="@Model[i]" onclick="@("window.location.href='" + @Url.Action("Book", "Home", new{name=i}) + "'");" />
             }
 
         </div>

@@ -34,7 +34,10 @@ namespace SoftwareEngineering
             services.AddScoped<IUserService, UserService>();
 
             var key = "8Zz5tw0Ionm3XPZZfN0NOml3z9FMfmpgXwovR9fp6ryDIoGRM8EPHAB6iHsc0fb";
-
+            services.AddCors(options =>
+                options.AddPolicy("AllowAll", builder =>
+                builder.AllowAnyHeader().AllowAnyMethod().SetIsOriginAllowed((host) => true).AllowCredentials())
+            );
             services.AddAuthentication(x =>
             {
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -71,6 +74,7 @@ namespace SoftwareEngineering
             });
 
             services.AddSingleton<IJWTAuthenticationManager>(new JWTAuthenticationManager(key));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -91,6 +95,9 @@ namespace SoftwareEngineering
 
             app.UseRouting();
 
+            app.UseCors("AllowAll");
+            app.UseMiddleware<MaintainCorsHeadersMiddleware>();
+
             app.UseAuthentication();
             app.UseAuthorization();
 
@@ -105,6 +112,41 @@ namespace SoftwareEngineering
                 //    pattern: "api/{controller}/{action}/{id?}"
                 //    );
             });
+        }
+    }
+    public class MaintainCorsHeadersMiddleware
+    {
+        public MaintainCorsHeadersMiddleware(RequestDelegate next)
+        {
+            _next = next;
+        }
+        private readonly RequestDelegate _next;
+
+        public async Task Invoke(HttpContext httpContext)
+        {
+            // Find and hold onto any CORS related headers ...
+            var corsHeaders = new HeaderDictionary();
+            foreach (var pair in httpContext.Response.Headers)
+            {
+                if (!pair.Key.ToLower().StartsWith("access-control-")) { continue; } // Not CORS related
+                corsHeaders[pair.Key] = pair.Value;
+            }
+
+            // Bind to the OnStarting event so that we can make sure these CORS headers are still included going to the client
+            httpContext.Response.OnStarting(o => {
+                var ctx = (HttpContext)o;
+                var headers = ctx.Response.Headers;
+                // Ensure all CORS headers remain or else add them back in ...
+                foreach (var pair in corsHeaders)
+                {
+                    if (headers.ContainsKey(pair.Key)) { continue; } // Still there!
+                    headers.Add(pair.Key, pair.Value);
+                }
+                return Task.CompletedTask;
+            }, httpContext);
+
+            // Call the pipeline ...
+            await _next(httpContext);
         }
     }
 }
