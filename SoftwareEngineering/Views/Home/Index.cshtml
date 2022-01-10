@@ -6,9 +6,9 @@
 
 <style>
 
-    html{
-        margin:0;
-        height:100%;
+    html {
+        margin: 0;
+        height: 100%;
     }
 
     body {
@@ -16,8 +16,8 @@
         background-image: url('https://images5.alphacoders.com/919/919004.jpg');
         background-attachment: fixed;
         background-size: cover;
-        height:100%;
-        margin:0;
+        height: 100%;
+        margin: 0;
     }
 
     /* Style the header */
@@ -26,7 +26,6 @@
         text-align: center;
         color: white;
     }
-
 
     /* Style the navigation menu */
     nav {
@@ -64,7 +63,7 @@
         background-color: #fff;
         text-align: center;
         color: white;
-        position:fixed;
+        position: fixed;
     }
 
     .form-signin {
@@ -101,48 +100,47 @@
             border-top-left-radius: 0;
             border-top-right-radius: 0;
         }
-
 </style>
 @model SoftwareEngineering.Models.DTOs.LoginUserDTO
 
-            @Html.AntiForgeryToken()
-            @Html.ValidationSummary(true)
-            @if (@ViewBag.Message != null)
-            {
-                <div style="border: 1px solid red">
-                    @ViewBag.Message
-                </div>
+@Html.AntiForgeryToken()
+@Html.ValidationSummary(true)
+@if (@ViewBag.Message != null)
+{
+    <div style="border: 1px solid red">
+        @ViewBag.Message
+    </div>
+}
+<div class="text-center" style="background: rgb(255,255,255,0.5); margin:auto; width:40%; border-radius:0.25rem">
+    <form class="form-signin" enctype="multipart/form-data" method="post" action="/api/User/Login">
+        <h1 class="h3 mb-3 font-weight-normal">Login</h1>
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input asp-for="Email" type="email" id="inputEmail" class="form-control" placeholder="Email Address" required autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input asp-for="Password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" value="remember-me"> Remember me
+            </label>
+        </div>
+        <h5 style="color: white; background-color: rgba(178,34,34, 0.8); display: none;" id="error">Email or password is incorrect.</h5>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+        <button type="button" class="btn btn-secondary btn-lg btn-block" onclick="@("window.location.href='" + @Url.Action("Register", "Home") + "'");">Register</button>
+    </form>
+</div>
+<div style="padding: 10px"></div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var nav = document.getElementsByTagName("header");
+        nav[0].style.display = "none";
+        var url = new URL(window.location.href);
+        var isLogged = url.searchParams.get("isLogged")
+        var error = document.getElementById("error");
+        if (isLogged.trim() === "False") {
+            if (isLogged != null) {
+                error.style.display = "block";
             }
-            <div class="text-center" style="background: rgb(255,255,255,0.5); margin:auto; width:40%; border-radius:0.25rem">
-                <form class="form-signin" enctype="multipart/form-data" method="post" action="/api/User/Login">
-                    <h1 class="h3 mb-3 font-weight-normal">Login</h1>
-                    <label for="inputEmail" class="sr-only">Email address</label>
-                    <input asp-for="Email" type="email" id="inputEmail" class="form-control" placeholder="Email Address" required autofocus>
-                    <label for="inputPassword" class="sr-only">Password</label>
-                    <input asp-for="Password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-                    <div class="checkbox mb-3">
-                        <label>
-                            <input type="checkbox" value="remember-me"> Remember me
-                        </label>
-                    </div>
-                    <h5 style="color:red; display:none;" id="error">Email or password is incorrect.</h5>
-                    <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
-                    <button type="button" class="btn btn-secondary btn-lg btn-block" onclick="@("window.location.href='" + @Url.Action("Register", "Home") + "'");">Register</button>
-                </form>
-            </div>
-    <div style="padding: 10px"></div>
-        <script>
-            document.addEventListener('DOMContentLoaded', function(){
-                var nav = document.getElementsByTagName("header");
-                nav[0].style.display = "none";
-                var url = new URL(window.location.href);
-                var isLogged = url.searchParams.get("isLogged")
-                var error = document.getElementById("error");
-                if(isLogged.trim() === "False"){
-                    if(isLogged != null){
-                        error.style.display = "block";
-                    }
-                }
+        }
 
-            })
-        </script>
+    })
+</script>
