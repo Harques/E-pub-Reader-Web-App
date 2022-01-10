@@ -25,8 +25,11 @@ namespace SoftwareEngineering.Controllers
         [Route("Register")]
         public IActionResult Register([FromForm] RegisterUserDTO registerUserDTO)
         {
-            _userService.Register(registerUserDTO);
-            return Ok("Renk");
+            var token = _userService.Register(registerUserDTO);
+            if (token == null)
+                return RedirectToAction("Register", "Home", new { isRegistered = false });
+            Response.Cookies.Append("X-Access-Token", token, new CookieOptions() { HttpOnly = true, SameSite = SameSiteMode.Strict });
+            return RedirectToAction("Register", "Home", new { isRegistered = true });
         }
 
         [AllowAnonymous]
@@ -36,9 +39,9 @@ namespace SoftwareEngineering.Controllers
         {
             var token = _userService.Login(loginUserDTO);
             if (token == null)
-                return RedirectToAction("Index", "Home", new {isLogged = false});
+                return RedirectToAction("Index", "Home", new { isLogged = false });
             Response.Cookies.Append("X-Access-Token", token, new CookieOptions() { HttpOnly = true, SameSite = SameSiteMode.Strict });
-            return RedirectToAction("Browse", "Home", new {isLogged = true});
+            return RedirectToAction("Browse", "Home", new { isLogged = true });
         }
 
         [AllowAnonymous]
