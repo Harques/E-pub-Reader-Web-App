@@ -84,9 +84,13 @@
 <body style="height:100%">
 
     <div id="divider" class="show"></div>
-    <div id="area" style="background:white;margin-top:50px; width:70rem; height:40rem;"></div>
-    <a id="prev" href="#prev" class="arrow btn" style="visibility: hidden;">‹</a>
-    <a id="next" href="#next" class="arrow btn" style="visibility: visible;">›</a>
+    <div id="area" style="background:white;margin-top:50px; width:70rem; height:40rem;">
+        <div class=" row d-flex justify-content-center flex-nowrap">
+            <a id="prev" href="#prev" class="arrow btn" style="visibility: hidden; background-color: rgba(255,255, 255, 0.5);">‹</a>
+            <a id="next" href="#next" class="arrow btn" style="visibility: visible; background-color: rgba(255,255, 255, 0.5);">›</a>
+        </div>
+    </div>
+
     <script>
 
         var params = URLSearchParams && new URLSearchParams(document.location.search.substring(1));
@@ -188,11 +192,9 @@
                 });
 
             });
-
-
     </script>
     <script>
-        document.addEventListener('DOMContentLoaded', function(){
+        document.addEventListener('DOMContentLoaded', function () {
             var footer = document.getElementsByTagName("footer");
             footer[0].style.display = "none";
         })
