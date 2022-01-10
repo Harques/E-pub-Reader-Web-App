@@ -27,12 +27,6 @@
         color: white;
     }
 
-    /* Container for flexboxes */
-    section {
-        display: -webkit-flex;
-        display: flex;
-        width:70%;
-    }
 
     /* Style the navigation menu */
     nav {
@@ -73,20 +67,6 @@
         position:fixed;
     }
 
-    box {
-        display: -ms-flexbox;
-        display: -webkit-box;
-        display: flex;
-        -ms-flex-align: center;
-        -ms-flex-pack: center;
-        -webkit-box-align: center;
-        align-items: center;
-        -webkit-box-pack: center;
-        justify-content: center;
-        padding-top: 40px;
-        padding-bottom: 40px;
-    }
-
     .form-signin {
         width: 100%;
         max-width: 330px;
@@ -125,10 +105,6 @@
 </style>
 @model SoftwareEngineering.Models.DTOs.RegisterUserDTO
 
-    <div style="padding: 30px;"></div>
-    <section>
-
-        <nav class="login">
             @Html.AntiForgeryToken()
             @Html.ValidationSummary(true)
             @if (@ViewBag.Message != null)
@@ -137,7 +113,7 @@
                     @ViewBag.Message
                 </div>
             }
-            <body2 class="text-center">
+            <div class="text-center" style="background: rgb(255,255,255,0.5); margin:auto; width:70%;">
                 <form class="form-signin" enctype="multipart/form-data" method="post" action="/api/User/Login">
                     <h1 class="h3 mb-3 font-weight-normal">Login</h1>
                     <label for="inputEmail" class="sr-only">Email address</label>
@@ -152,12 +128,9 @@
                     <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
                     <button type="button" class="btn btn-secondary btn-lg btn-block" onclick="@("window.location.href='" + @Url.Action("Register", "Home") + "'");">Register</button>
                 </form>
-            </body2>
-        </nav>
-    </section style="text-align:left;">
+            </div>
     <div style="padding: 10px"></div>
-    <section>
-        <article>
+    <article style="width:70%;margin:auto;">
             <p>
                 In eget nisl id sapien gravida posuere. Aliquam consequat eget massa a tristique. Vivamus id ex pellentesque, rhoncus metus in, euismod nulla. Mauris quis pretium dui, vitae suscipit nibh. Nulla condimentum porttitor orci a posuere. Nunc placerat egestas rutrum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed varius semper risus et posuere.
             </p>
@@ -165,5 +138,3 @@
                 In eu tristique dui. Sed felis felis, finibus maximus consectetur at, blandit vel mauris. Mauris efficitur justo erat, vitae molestie felis lobortis id. Pellentesque accumsan massa sagittis nisl tristique porta. Proin a lorem congue, congue nibh eget, tempus neque. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed at libero orci. Maecenas porta elit non egestas dapibus. Mauris consectetur, nisl vitae consectetur sodales, justo lorem efficitur elit, auctor posuere quam tellus id ligula.
             </p>
         </article>
-    </section>
-    <div style="padding: 30px"></div>

@@ -8,13 +8,14 @@
     <link rel="stylesheet" href="~/css/site.css" />
 <style>
     main {
-        text-align: -webkit-center;
+        height:100%;
+        vertical-align:middle;
     }
 </style>
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3" style="margin-bottom:0!important">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">E-Book Application</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -34,8 +35,8 @@
             </div>
         </nav>
     </header>
-    <div class="container" style="height:90%">
-        <main role="main" class="pb-3" style="height:100%">
+    <div class="container" style="height:90%; display:-webkit-box; vertical-align:middle;">
+        <main role="main" class="pb-3" style="height:100%;display:table-cell;">
             @RenderBody()
         </main>
     </div>
