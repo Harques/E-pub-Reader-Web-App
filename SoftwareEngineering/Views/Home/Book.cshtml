@@ -36,6 +36,22 @@
     row {
         display: block;
     }
+    #divider.show {
+    display: block;
+}
+#divider {
+    position: absolute;
+    width: 1px;
+    border-right: 1px #000 solid;
+    height: 80%;
+    z-index: 1;
+    left: 50%;
+    margin-left: -1px;
+    top: 10%;
+    opacity: .15;
+    box-shadow: -2px 0 15px rgb(0 0 0);
+    display: none;
+}
 
     a {
         text-decoration: none;
@@ -63,8 +79,9 @@
     }
 </style>
 
-<body>
-        <div id="area" style="background:white;margin-top:50px;"></div>
+<body style="height:100%">
+        <div id="divider" class="show"></div>
+        <div id="area" style="background:white;margin-top:50px; width:70rem;"></div>
         <a id="prev" href="#prev" class="arrow" style="visibility: hidden;">‹</a>
         <a id="next" href="#next" class="arrow" style="visibility: visible;">›</a>
 @*        <div class="row">
@@ -80,8 +97,8 @@
     // Load the opf
     var book = ePub(url || "https://sebooks.blob.core.windows.net/ebooks/george-rr-martin-buz-ve-atesin-sarkisi.epub");
     var rendition = book.renderTo("area", {
-      width: 800,
-      height: 600,
+      width: "70rem",
+      height: "60rem",
       spread: "always"
     });
 
