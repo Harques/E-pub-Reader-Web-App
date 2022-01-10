@@ -39,6 +39,7 @@
 
     #divider.show {
         display: block;
+        margin-top: 40px;
     }
 
     #divider {
@@ -82,20 +83,20 @@
 </style>
 
 <body style="height:100%">
-    <div class="btn-group" role="group" aria-label="Tools">
-        <button type="button" class="btn btn-secondary disabled">Font Change</button>
-        <button type="button" class="btn btn-secondary disabled">Dictionary</button>
-        <button type="button" class="btn btn-secondary disabled">Translator</button>
-        <button type="button" class="btn btn-secondary disabled">Highlight Text</button>
-        <button type="button" class="btn btn-secondary disabled">Add Note</button>
-        <button type="button" class="btn btn-secondary disabled">Color Temperature</button>
-        <button type="button" class="btn btn-secondary disabled">Brightness</button>
+    <div class="btn-group d-flex justify-content-center" role="group" aria-label="Tools">
+        <button type="button" class="btn btn-secondary disabled" style="background-color: rgba(255, 255, 255, 0.7); color: rgba(0, 0, 0, 0.7);">Font Change</button>
+        <button type="button" class="btn btn-secondary disabled" style="background-color: rgba(255, 255, 255, 0.7); color: rgba(0, 0, 0, 0.7);">Dictionary</button>
+        <button type="button" class="btn btn-secondary disabled" style="background-color: rgba(255, 255, 255, 0.7); color: rgba(0, 0, 0, 0.7);">Translator</button>
+        <button type="button" class="btn btn-secondary disabled" style="background-color: rgba(255, 255, 255, 0.7); color: rgba(0, 0, 0, 0.7);">Highlight Text</button>
+        <button type="button" class="btn btn-secondary disabled" style="background-color: rgba(255, 255, 255, 0.7); color: rgba(0, 0, 0, 0.7);">Add Note</button>
+        <button type="button" class="btn btn-secondary disabled" style="background-color: rgba(255, 255, 255, 0.7); color: rgba(0, 0, 0, 0.7);">Color Temperature</button>
+        <button type="button" class="btn btn-secondary disabled" style="background-color: rgba(255, 255, 255, 0.7); color: rgba(0, 0, 0, 0.7);">Brightness</button>
     </div>
     <div id="divider" class="show"></div>
     <div id="area" style="z-index: 10; background:white; margin-top: 50px; width: 70rem; height: 40rem;">
         <div class="container centered" style="z-index: 100; padding: 0px;">
-            <a id="prev" href="#prev" class="arrow float-start" style="visibility: hidden; background-color: rgba(128, 128, 128, 0); margin-left: 10px; font-size: 300%; ">‹</a>
-            <a id="next" href="#next" class="arrow float-right" style="visibility: visible; background-color: rgba(128, 128, 128, 0); font-size: 300%;">›</a>
+            <a id="prev" href="#prev" class="arrow float-start" style="visibility: hidden; background-color: rgba(128, 128, 128, 0); color:dimgray; margin-left: 10px; font-size: 300%; ">‹</a>
+            <a id="next" href="#next" class="arrow float-right" style="visibility: visible; background-color: rgba(128, 128, 128, 0); color: dimgray; font-size: 300%;">›</a>
         </div>
     </div>
 
