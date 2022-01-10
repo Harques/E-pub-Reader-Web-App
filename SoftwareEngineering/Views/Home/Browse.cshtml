@@ -1,4 +1,5 @@
-﻿@{
+﻿@using VersOne.Epub
+@{
     ViewData["Title"] = "Browse Page";
 }
 
@@ -36,17 +37,16 @@
     }
 </style>
 
+@model string[]
 <body>
     <section>
         <div class="row">
-            <img src="https://img.kitapyurdu.com/v1/getImage/fn:7476337/wh:true/miw:200/mih:200" onclick="@("window.location.href='" + @Url.Action("Book", "Home") + "'");">
-            <img src="https://img.kitapyurdu.com/v1/getImage/fn:7425232/wh:true/wi:800"onclick="@("window.location.href='" + @Url.Action("Book", "Home") + "'");">
-            <img src="https://i.idefix.com/cache/600x600-0/originals/0000000070734-1.jpg" onclick="@("window.location.href='" + @Url.Action("Book", "Home") + "'");"/>
-            <img src="https://i.idefix.com/cache/500x400-0/originals/0000000057163-1.jpg" onclick="@("window.location.href='" + @Url.Action("Book", "Home") + "'");"/>
-            <img src="https://kbimages1-a.akamaihd.net/e2537ec3-2401-47d6-a771-6bffb0f44e4e/353/569/90/False/harry-potter-and-the-prisoner-of-azkaban-5.jpg"onclick="@("window.location.href='" + @Url.Action("Book", "Home") + "'");">
-            <img src="https://kbimages1-a.akamaihd.net/99fbc66f-a5b2-4f32-850c-c19c3cffe27f/353/569/90/False/harry-potter-and-the-order-of-the-phoenix-6.jpg"onclick="@("window.location.href='" + @Url.Action("Book", "Home") + "'");" />
-            <img src="https://kbimages1-a.akamaihd.net/ed24fc45-4f09-4a65-beb1-294f5f3c496a/353/569/90/False/harry-potter-and-the-deathly-hallows-4.jpg"onclick="@("window.location.href='" + @Url.Action("Book", "Home") + "'");" />
-            <img src="https://www.iskultur.com.tr/boyut/50/qa/dosyalar/2013/03/kumarbaz-1-253x420.png" onclick="@("window.location.href='" + @Url.Action("Book", "Home") + "'");"/>
+            @for (int i = 0; i < Model.Length; i++)
+            {
+                <img src="@Model[i]" onclick="@("window.location.href='" + @Url.Action("Book", "Home") + "'");" />
+            }
+
         </div>
     </section>
+
 </body>

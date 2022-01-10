@@ -11,7 +11,6 @@
     <PackageReference Include="Azure.Storage.Files.Shares" Version="12.8.0" />
     <PackageReference Include="BCrypt.Net-Next" Version="4.0.2" />
     <PackageReference Include="EntityFramework" Version="6.4.4" />
-    <PackageReference Include="EpubNet" Version="1.0.3" />
     <PackageReference Include="jQuery.Ajax.Unobtrusive" Version="2.0.20710" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.13" />
