@@ -93,14 +93,16 @@
                                 <div class="col-md-6 mb-4">
                                     <div class="form-outline">
                                         <label class="form-label" for="email">Email</label>
-                                        <input asp-for="Email" style="background:rgb(255,255,255,0.8)" type="email" id="emailAddress" class="form-control form-control-lg" />
+                                        <input asp-for="Email" style="background:rgb(255,255,255,0.8)" type="email" id="emailAddress" class="form-control form-control-lg" placeholder="name@example.com"/>
+                                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-4">
 
                                     <div class="form-outline">
                                         <label class="form-label" for="password">Password</label>
-                                        <input asp-for="Password" style="background:rgb(255,255,255,0.8)" type="password" id="password" class="form-control form-control-lg" />
+                                        <input asp-for="Password" style="background:rgb(255,255,255,0.8)" type="password" id="password" class="form-control form-control-lg" placeholder="Password"/>
+                                        <small id="passwordHelp" class="form-text text-muted">We recommend not using passwords that you use on other platforms.</small>
                                     </div>
                                 </div>
                             </div>
@@ -119,7 +121,7 @@
                                 <div class="col-md-6 mb-4">
                                     <div class="form-outline">
                                         <label class="form-label" for="phoneNumber">Phone Number</label>
-                                        <input asp-for="Phone" style="background:rgb(255,255,255,0.8)" type="tel" id="phoneNumber" class="form-control form-control-lg" />
+                                        <input asp-for="Phone" style="background:rgb(255,255,255,0.8)" type="tel" id="phoneNumber" class="form-control form-control-lg" placeholder="+905xxyyyzztt" pattern="^+90\d{3}\d{3}\d{4}$"/>
                                     </div>
                                 </div>
                             </div>
