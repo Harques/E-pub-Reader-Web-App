@@ -124,7 +124,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <h5 style="color:red; display:none;" id="error">Account already exists.</h5>
+                            <h5 style="color:red; display:none; text-align:center" id="error">Account already exists.</h5>
                             <div style="text-align:center" class="mt-4 pt-2">
                                 <input class="btn btn-primary btn-lg" type="submit" value="Submit" />
                             </div>
@@ -142,8 +142,8 @@
             var url = new URL(window.location.href);
             var isRegistered = url.searchParams.get("isRegistered")
             var error = document.getElementById("error");
-            if(isLogged.trim() === "False"){
-                if(isLogged != null){
+            if(isRegistered.trim() === "False"){
+                if(isRegistered != null){
                     error.style.display = "block";
                     }
                }

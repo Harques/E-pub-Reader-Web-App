@@ -29,7 +29,7 @@ namespace SoftwareEngineering.Controllers
             if (token == null)
                 return RedirectToAction("Register", "Home", new { isRegistered = false });
             Response.Cookies.Append("X-Access-Token", token, new CookieOptions() { HttpOnly = true, SameSite = SameSiteMode.Strict });
-            return RedirectToAction("Register", "Home", new { isRegistered = true });
+            return RedirectToAction("Browse", "Home");
         }
 
         [AllowAnonymous]
@@ -41,7 +41,7 @@ namespace SoftwareEngineering.Controllers
             if (token == null)
                 return RedirectToAction("Index", "Home", new { isLogged = false });
             Response.Cookies.Append("X-Access-Token", token, new CookieOptions() { HttpOnly = true, SameSite = SameSiteMode.Strict });
-            return RedirectToAction("Browse", "Home", new { isLogged = true });
+            return RedirectToAction("Browse", "Home");
         }
 
         [AllowAnonymous]
